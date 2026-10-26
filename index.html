@@ -1518,34 +1518,299 @@
     }
 
     /* =========================================================
-       RESPONSIVE MOBILE VIEWPORT ENHANCEMENTS (< 860px)
+       RESPONSIVE MOBILE VIEWPORT ENHANCEMENTS (< 880px)
        ========================================================= */
+    /* 3-Bar Options Button */
     .mobile-nav-toggle {
       display: none;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
+      background: rgba(255, 106, 0, 0.09);
+      border: 1px solid rgba(255, 106, 0, 0.4);
       color: var(--text-main);
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 1rem;
+      padding: 6px 12px;
+      border-radius: 8px;
       cursor: pointer;
       align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-nav-toggle:hover, .mobile-nav-toggle.active {
+      background: rgba(255, 106, 0, 0.22);
+      border-color: var(--accent-orange);
+      box-shadow: 0 0 16px rgba(255, 106, 0, 0.35);
+    }
+
+    .three-bars-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 17px;
+      height: 13px;
+    }
+
+    .three-bars-icon span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background: var(--accent-orange);
+      border-radius: 2px;
+      transition: transform 0.25s ease-in-out, opacity 0.2s ease;
+    }
+
+    .mobile-nav-toggle.active .three-bars-icon span:nth-child(1) {
+      transform: translateY(5.5px) rotate(45deg);
+    }
+
+    .mobile-nav-toggle.active .three-bars-icon span:nth-child(2) {
+      opacity: 0;
+      transform: translateX(-4px);
+    }
+
+    .mobile-nav-toggle.active .three-bars-icon span:nth-child(3) {
+      transform: translateY(-5.5px) rotate(-45deg);
+    }
+
+    /* Mobile Navigation Drawer Backdrop Overlay */
+    .mobile-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 99990;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+      pointer-events: none;
+    }
+
+    .mobile-drawer-overlay.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* Mobile Options Drawer Panel */
+    .mobile-nav-drawer {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 310px;
+      max-width: 86vw;
+      height: 100vh;
+      height: 100dvh;
+      background-color: #0b0c12;
+      border-left: 1px solid var(--border-color);
+      z-index: 99995;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -12px 0 40px rgba(0, 0, 0, 0.75);
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    [data-theme="light"] .mobile-nav-drawer {
+      background-color: #ffffff;
+      border-left: 1px solid var(--border-color);
+      box-shadow: -12px 0 35px rgba(0, 0, 0, 0.16);
+    }
+
+    .mobile-nav-drawer.open {
+      transform: translateX(-320px);
+    }
+
+    .mobile-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.15rem 1.25rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .drawer-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+
+    .drawer-close-btn {
+      background: var(--card-inner);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
       justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
       transition: all 0.2s;
     }
 
-    .mobile-nav-toggle:hover {
+    .drawer-close-btn:hover {
+      color: var(--accent-orange);
       border-color: var(--accent-orange);
+    }
+
+    .drawer-section-label {
+      padding: 1.1rem 1.25rem 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-subtle);
+    }
+
+    .mobile-drawer-links {
+      list-style: none;
+      padding: 0.4rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .mobile-drawer-links li a {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 0.95rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      transition: all 0.18s ease;
+      gap: 0.9rem;
+    }
+
+    [data-theme="light"] .mobile-drawer-links li a {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .mobile-drawer-links li a:active,
+    .mobile-drawer-links li a:hover,
+    .mobile-drawer-links li a.active {
+      background: rgba(255, 106, 0, 0.12);
+      border-color: var(--accent-orange);
+      transform: translateX(3px);
+    }
+
+    .mobile-drawer-links li a.active .link-name {
       color: var(--accent-orange);
     }
 
-    @media (max-width: 860px) {
+    .drawer-link-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 7px;
+      background: var(--card-inner);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-orange);
+      font-size: 0.92rem;
+      flex-shrink: 0;
+    }
+
+    .drawer-link-text {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .drawer-link-text .link-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .drawer-link-text .link-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .link-arrow {
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+      transition: transform 0.2s;
+    }
+
+    .mobile-drawer-links li a:hover .link-arrow {
+      color: var(--accent-orange);
+      transform: translateX(3px);
+    }
+
+    .drawer-footer-actions {
+      margin-top: auto;
+      padding: 1.25rem 1rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .drawer-action-btn {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      text-decoration: none;
+    }
+
+    .drawer-action-btn.primary {
+      background: linear-gradient(135deg, #ff2a00, #ff6a00);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(255, 42, 0, 0.35);
+    }
+
+    .drawer-action-btn.secondary {
+      background: var(--card-inner);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+    }
+
+    .drawer-action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 880px) {
       nav {
         padding: 0.75rem 1rem;
       }
 
       .mobile-nav-toggle {
-        display: flex;
+        display: inline-flex !important;
+      }
+
+      .nav-links {
+        display: none !important;
       }
 
       .cmd-kbd, #themeText {
@@ -1554,53 +1819,6 @@
 
       .cmd-trigger-btn, .theme-btn {
         padding: 6px 9px;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: rgba(11, 12, 17, 0.98);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid var(--border-color);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 0.5rem 0;
-        display: none;
-        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.5);
-      }
-
-      [data-theme="light"] .nav-links {
-        background-color: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
-      }
-
-      .nav-links.open {
-        display: flex;
-        animation: slideDownMobileNav 0.22s ease-out;
-      }
-
-      @keyframes slideDownMobileNav {
-        from { opacity: 0; transform: translateY(-8px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      .nav-links li {
-        width: 100%;
-      }
-
-      .nav-links a {
-        display: block;
-        padding: 0.85rem 1.5rem;
-        font-size: 0.95rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      }
-
-      [data-theme="light"] .nav-links a {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       }
 
       .container {
@@ -1928,12 +2146,100 @@
           <i class="fa-solid fa-moon"></i>
           <span id="themeText">Light</span>
         </button>
-        <button class="mobile-nav-toggle" id="mobileNavToggle" onclick="toggleMobileNav()" aria-label="Toggle navigation menu">
-          <i class="fa-solid fa-bars"></i>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" onclick="toggleMobileNav(event)" aria-label="Open Navigation Options">
+          <div class="three-bars-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="toggle-text">Options</span>
         </button>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Drawer (Three-Bar Options Menu) -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="closeMobileNav()"></div>
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation Options">
+    <div class="mobile-drawer-header">
+      <div class="drawer-header-brand">
+        <span class="nav-logo-badge">ECE</span>
+        <span>DHANANJAY A P</span>
+      </div>
+      <button class="drawer-close-btn" onclick="closeMobileNav()" aria-label="Close Options Menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="drawer-section-label">NAVIGATION OPTIONS</div>
+    
+    <ul class="mobile-drawer-links">
+      <li>
+        <a href="#identity" onclick="mobileJumpTo('#identity')">
+          <span class="drawer-link-icon"><i class="fa-solid fa-user-astronaut"></i></span>
+          <span class="drawer-link-text">
+            <span class="link-name">Identity</span>
+            <span class="link-desc">Profile, Affiliations & Bio</span>
+          </span>
+          <i class="fa-solid fa-chevron-right link-arrow"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#works" onclick="mobileJumpTo('#works')">
+          <span class="drawer-link-icon"><i class="fa-solid fa-microchip"></i></span>
+          <span class="drawer-link-text">
+            <span class="link-name">Works</span>
+            <span class="link-desc">Hardware Security & IoT Systems</span>
+          </span>
+          <i class="fa-solid fa-chevron-right link-arrow"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#console" onclick="mobileJumpTo('#console')">
+          <span class="drawer-link-icon"><i class="fa-solid fa-terminal"></i></span>
+          <span class="drawer-link-text">
+            <span class="link-name">Console</span>
+            <span class="link-desc">Interactive Terminal & CLI</span>
+          </span>
+          <i class="fa-solid fa-chevron-right link-arrow"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#curriculum" onclick="mobileJumpTo('#curriculum')">
+          <span class="drawer-link-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+          <span class="drawer-link-text">
+            <span class="link-name">CV &amp; Skills</span>
+            <span class="link-desc">Education & Technical Matrix</span>
+          </span>
+          <i class="fa-solid fa-chevron-right link-arrow"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#notes" onclick="mobileJumpTo('#notes')">
+          <span class="drawer-link-icon"><i class="fa-solid fa-book-bookmark"></i></span>
+          <span class="drawer-link-text">
+            <span class="link-name">Research Notes</span>
+            <span class="link-desc">ESP32 Firmware Security Articles</span>
+          </span>
+          <i class="fa-solid fa-chevron-right link-arrow"></i>
+        </a>
+      </li>
+    </ul>
+
+    <div class="drawer-footer-actions">
+      <button class="drawer-action-btn primary" onclick="closeMobileNav(); openDriveModal('cv.pdf', 'DHANANJAY A P - Curriculum Vitae (PDF)');">
+        <i class="fa-solid fa-file-pdf"></i> View Official CV (PDF)
+      </button>
+      <div class="drawer-action-row">
+        <button class="drawer-action-btn secondary" onclick="closeMobileNav(); openCmdPalette();">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+        <button class="drawer-action-btn secondary" onclick="toggleTheme()">
+          <i class="fa-solid fa-circle-half-stroke"></i> Theme
+        </button>
+      </div>
+    </div>
+  </aside>
 
   <main class="container">
 
@@ -2578,36 +2884,63 @@
       }
     })();
 
-    // 4b. Responsive Mobile Drawer Navigation Handlers
-    function toggleMobileNav() {
-      const links = document.getElementById('navLinks');
+    // 4b. Responsive Mobile Drawer Navigation Handlers (3-Bar Options)
+    function toggleMobileNav(e) {
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+      const drawer = document.getElementById('mobileNavDrawer');
+      const overlay = document.getElementById('mobileDrawerOverlay');
       const toggleBtn = document.getElementById('mobileNavToggle');
-      if (!links) return;
-      const isOpen = links.classList.toggle('open');
-      if (toggleBtn) {
-        toggleBtn.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+      if (!drawer) return;
+
+      const isOpen = drawer.classList.contains('open');
+      if (isOpen) {
+        closeMobileNav();
+      } else {
+        drawer.classList.add('open');
+        if (overlay) overlay.classList.add('show');
+        if (toggleBtn) toggleBtn.classList.add('active');
+        document.body.style.overflow = 'hidden';
       }
     }
 
     function closeMobileNav() {
-      const links = document.getElementById('navLinks');
+      const drawer = document.getElementById('mobileNavDrawer');
+      const overlay = document.getElementById('mobileDrawerOverlay');
       const toggleBtn = document.getElementById('mobileNavToggle');
-      if (links && links.classList.contains('open')) {
-        links.classList.remove('open');
-        if (toggleBtn) {
-          toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      if (drawer) drawer.classList.remove('open');
+      if (overlay) overlay.classList.remove('show');
+      if (toggleBtn) toggleBtn.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function mobileJumpTo(targetSelector) {
+      closeMobileNav();
+      setTimeout(() => {
+        const target = document.querySelector(targetSelector);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
         }
-      }
+      }, 150);
     }
 
     // Close mobile drawer on tap outside
     document.addEventListener('click', (e) => {
-      const links = document.getElementById('navLinks');
+      const drawer = document.getElementById('mobileNavDrawer');
       const toggleBtn = document.getElementById('mobileNavToggle');
-      if (links && links.classList.contains('open')) {
-        if (!links.contains(e.target) && !toggleBtn.contains(e.target)) {
+      if (drawer && drawer.classList.contains('open')) {
+        if (!drawer.contains(e.target) && (!toggleBtn || !toggleBtn.contains(e.target))) {
           closeMobileNav();
         }
+      }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileNav();
       }
     });
 
@@ -2629,7 +2962,7 @@
         }
       });
       if (currentSection) {
-        document.querySelectorAll('.nav-links a').forEach(a => {
+        document.querySelectorAll('.nav-links a, .mobile-drawer-links a').forEach(a => {
           if (a.getAttribute('href') === '#' + currentSection) {
             a.classList.add('active');
           } else {
