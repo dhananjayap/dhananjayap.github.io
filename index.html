@@ -1,0 +1,2849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DHANANJAY A P &mdash; Portfolio & Curriculum Vitae</title>
+  <link rel="icon" type="image/png" href="profile.png">
+  
+  <!-- Modern Technical Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- KaTeX for LaTeX Math Formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #08090d;
+      --card-bg: #111218;
+      --card-inner: #161822;
+      --text-main: #f4f4f7;
+      --text-muted: #9598a6;
+      --text-subtle: #5e6170;
+      --border-color: #20222f;
+      --border-highlight: #ff6a00;
+      --accent-red: #ff2a00;
+      --accent-orange: #ff6a00;
+      --accent-yellow: #ffb703;
+      --accent-green: #10b981;
+      --btn-grad: linear-gradient(135deg, #ff2a00 0%, #ff6a00 100%);
+      --btn-grad-hover: linear-gradient(135deg, #e62200 0%, #ff5500 100%);
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    [data-theme="light"] {
+      --bg-color: #fafafc;
+      --card-bg: #ffffff;
+      --card-inner: #f4f4f8;
+      --text-main: #0c0d12;
+      --text-muted: #525463;
+      --text-subtle: #898b98;
+      --border-color: #e5e6ee;
+      --border-highlight: #ff5500;
+      --btn-grad: linear-gradient(135deg, #ff2a00 0%, #ff6a00 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      transition: background-color 0.25s, color 0.25s;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Cursor Spotlight Glow */
+    .spotlight {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(750px circle at var(--mouse-x, 50%) var(--mouse-y, 30%), rgba(255, 106, 0, 0.08), transparent 75%);
+    }
+
+    /* Reading Progress Bar */
+    #progressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--accent-yellow));
+      width: 0%;
+      z-index: 10000;
+      transition: width 0.1s ease-out;
+    }
+
+    /* Telemetry Header (Tathva / Astra Inspired) */
+    .telemetry-bar {
+      background-color: rgba(12, 13, 19, 0.95);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.45rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      letter-spacing: 0.03em;
+      position: relative;
+      z-index: 101;
+    }
+
+    [data-theme="light"] .telemetry-bar {
+      background-color: #f0f1f6;
+    }
+
+    .telemetry-group {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .status-pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background-color: rgba(8, 9, 13, 0.88);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+      padding: 0.85rem 1.5rem;
+    }
+
+    [data-theme="light"] nav {
+      background-color: rgba(250, 250, 252, 0.9);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-logo-badge {
+      background: var(--btn-grad);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(255, 42, 0, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent-orange);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    /* Quick Command Palette Button */
+    .cmd-trigger-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .cmd-trigger-btn:hover {
+      border-color: var(--accent-orange);
+      color: var(--text-main);
+    }
+
+    .cmd-trigger-btn kbd {
+      background: var(--card-inner);
+      border: 1px solid var(--border-color);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      color: var(--accent-orange);
+    }
+
+    .theme-btn {
+      background: none;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 5px 10px;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--accent-orange);
+      color: var(--text-main);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+
+    #interactiveCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.45;
+      z-index: 0;
+    }
+
+    .hero-layout {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+
+    @media (min-width: 860px) {
+      .hero-layout {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 2.5rem;
+      }
+    }
+
+    /* Featured Rectangular Portrait Card on the Left */
+    .portrait-card {
+      width: 100%;
+      max-width: 240px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2.5px solid var(--accent-orange);
+      box-shadow: 0 12px 35px rgba(255, 106, 0, 0.22);
+      position: relative;
+      background-color: var(--card-bg);
+      transform-style: preserve-3d;
+      transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s;
+      flex-shrink: 0;
+      align-self: flex-start;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 860px) {
+      .portrait-card {
+        margin: 0;
+      }
+    }
+
+    .portrait-card:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 45px rgba(255, 106, 0, 0.35);
+    }
+
+    .portrait-img {
+      width: 100%;
+      height: 275px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .portrait-hud {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(8, 9, 13, 0.95) 85%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-main);
+      border-top: 1px solid rgba(255, 106, 0, 0.25);
+    }
+
+    .hud-tag {
+      color: var(--accent-yellow);
+      font-weight: 700;
+    }
+
+    /* Hero Bio & Details on Right */
+    .hero-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .hero-name {
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+    }
+
+    .typewriter-title {
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      color: var(--accent-orange);
+      font-weight: 600;
+      min-height: 1.4em;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      width: 2.5px;
+      height: 1.1em;
+      background-color: var(--accent-red);
+      vertical-align: middle;
+      margin-left: 4px;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-bio {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--btn-grad);
+      color: #ffffff;
+      border: 1px solid transparent;
+      box-shadow: 0 2px 12px rgba(255, 42, 0, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--btn-grad-hover);
+      box-shadow: 0 4px 18px rgba(255, 42, 0, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-orange);
+      color: var(--accent-orange);
+      box-shadow: 0 2px 10px rgba(255, 106, 0, 0.15);
+      transform: translateY(-1px);
+    }
+
+    /* Live Telemetry Card with Oscilloscope Frequency Switcher */
+    .telemetry-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.25rem 1.4rem;
+      width: 100%;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.22);
+      transition: border-color 0.2s;
+    }
+
+    .telemetry-card:hover {
+      border-color: rgba(255, 106, 0, 0.4);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+    }
+
+    .wave-wrap {
+      margin: 0.65rem 0;
+      border-radius: 6px;
+      overflow: hidden;
+      background-color: #0b0c10;
+      border: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    #waveCanvas {
+      width: 100%;
+      height: 55px;
+      display: block;
+    }
+
+    .wave-controls {
+      display: flex;
+      gap: 0.4rem;
+      padding: 0.4rem 0.65rem;
+      background-color: #12131b;
+      border-top: 1px solid var(--border-color);
+      overflow-x: auto;
+    }
+
+    .wave-pill {
+      background-color: #191a24;
+      border: 1px solid #282a38;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .wave-pill:hover {
+      border-color: var(--accent-orange);
+      color: var(--accent-orange);
+    }
+
+    .wave-pill.active {
+      background-color: var(--accent-orange);
+      border-color: var(--accent-orange);
+      color: #fff;
+    }
+
+    /* Interactive Hardware Cryptographic Verification Engine */
+    .crypto-lab-card {
+      margin-top: 2rem;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .lab-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+    }
+
+    .lab-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lab-stat {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-green);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lab-display {
+      background-color: #0b0c10;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      min-height: 85px;
+      max-height: 120px;
+      overflow-y: auto;
+      margin-bottom: 0.85rem;
+      color: #e4e4e7;
+      line-height: 1.6;
+    }
+
+    .lab-progress {
+      height: 4px;
+      background-color: var(--card-inner);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .lab-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--accent-green));
+      transition: width 0.3s ease;
+    }
+
+    .lab-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .lab-meta-tags {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+    }
+
+    /* Profile & Research Methodology Card */
+    .profile-methodology-card {
+      margin-top: 2rem;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.6rem 1.75rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .profile-methodology-card:hover {
+      border-color: rgba(255, 106, 0, 0.4);
+    }
+
+    .methodology-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1.15rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .methodology-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .methodology-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-yellow);
+      font-weight: 600;
+    }
+
+    .profile-narrative {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .highlights-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .highlight-item {
+      background-color: var(--card-inner);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.1rem 1.2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .highlight-item:hover {
+      border-color: var(--accent-orange);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 106, 0, 0.12);
+    }
+
+    .highlight-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      background: rgba(255, 106, 0, 0.12);
+      border: 1px solid rgba(255, 106, 0, 0.3);
+      color: var(--accent-orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .highlight-content h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.01em;
+    }
+
+    .highlight-content p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Section Structure */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* Category Filter Pills */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .filter-btn {
+      background-color: var(--card-bg);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--accent-orange);
+      color: var(--accent-orange);
+    }
+
+    .filter-btn.active {
+      background: var(--btn-grad);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 2px 10px rgba(255, 42, 0, 0.3);
+    }
+
+    /* 3D Tilt Project Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+    }
+
+    .tilt-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.85rem;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .tilt-card:hover {
+      border-color: var(--accent-orange);
+      box-shadow: 0 12px 35px rgba(255, 106, 0, 0.15);
+    }
+
+    .card-badge {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background-color: rgba(255, 106, 0, 0.12);
+      color: var(--accent-orange);
+      border: 1px solid rgba(255, 106, 0, 0.25);
+      margin-bottom: 0.85rem;
+      align-self: flex-start;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.65rem;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag-item {
+      background-color: var(--card-inner);
+      color: var(--text-subtle);
+      border: 1px solid var(--border-color);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Cyber Command Console (Tathva Engineering Style) */
+    .console-box {
+      background-color: #0b0c10;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      font-family: var(--font-mono);
+    }
+
+    .console-header {
+      background-color: #14151c;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .console-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .console-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background-color: var(--accent-red); }
+    .dot-yellow { background-color: var(--accent-yellow); }
+    .dot-green { background-color: var(--accent-green); }
+
+    .console-title {
+      font-size: 0.8rem;
+      color: var(--text-subtle);
+    }
+
+    .console-body {
+      padding: 1.25rem;
+      min-height: 170px;
+      max-height: 250px;
+      overflow-y: auto;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #e4e4e7;
+    }
+
+    .console-line {
+      margin-bottom: 0.4rem;
+    }
+
+    .console-highlight {
+      color: var(--accent-orange);
+      font-weight: 700;
+    }
+
+    .console-cmd-tag {
+      color: var(--accent-yellow);
+      font-weight: 700;
+    }
+
+    .console-quick-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      background-color: #101117;
+      border-top: 1px solid #1c1e28;
+    }
+
+    .cmd-pill {
+      background-color: #181922;
+      border: 1px solid #282a38;
+      color: var(--accent-yellow);
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      font-size: 0.76rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .cmd-pill:hover {
+      background-color: var(--accent-orange);
+      color: #fff;
+      border-color: var(--accent-orange);
+    }
+
+    .console-input-row {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1.25rem;
+      background-color: #0b0c10;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .console-prompt {
+      color: var(--accent-orange);
+      font-weight: 700;
+      margin-right: 0.65rem;
+      font-size: 0.85rem;
+    }
+
+    #consoleInput {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    /* CV Section */
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 860px) {
+      .cv-grid {
+        grid-template-columns: 1.3fr 1fr;
+      }
+    }
+
+    .cv-heading {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timeline-node {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 1.5px solid var(--border-color);
+      margin-bottom: 1.85rem;
+    }
+
+    .timeline-node::before {
+      content: '';
+      position: absolute;
+      left: -5.5px;
+      top: 5px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background-color: var(--accent-orange);
+      border: 2px solid var(--bg-color);
+      box-shadow: 0 0 8px rgba(255, 106, 0, 0.4);
+    }
+
+    .timeline-date {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-main);
+    }
+
+    .timeline-org {
+      font-size: 0.9rem;
+      color: var(--accent-orange);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .skill-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .skill-group h4 {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.55rem;
+    }
+
+    .pill-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .badge-pill {
+      background-color: var(--card-inner);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+
+    .badge-pill:hover {
+      border-color: var(--accent-orange);
+      transform: translateY(-1px);
+    }
+
+    .badge-pill.highlight {
+      border-color: rgba(255, 106, 0, 0.4);
+      color: var(--accent-orange);
+      background-color: rgba(255, 106, 0, 0.08);
+    }
+
+    /* Research Note Card */
+    .note-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .note-card:hover {
+      border-color: var(--accent-orange);
+      transform: translateY(-2px);
+    }
+
+    .note-meta {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .note-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.75rem;
+    }
+
+    .note-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .note-abstract {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Command Palette Overlay (Ctrl+K) */
+    .cmd-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 5000;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 15vh;
+    }
+
+    .cmd-modal {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      width: 100%;
+      max-width: 580px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    }
+
+    .cmd-search-row {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      gap: 0.75rem;
+    }
+
+    #cmdSearchInput {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+
+    .cmd-list {
+      max-height: 320px;
+      overflow-y: auto;
+      padding: 0.5rem;
+    }
+
+    .cmd-item {
+      padding: 0.65rem 1rem;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      transition: background-color 0.15s, color 0.15s;
+    }
+
+    .cmd-item:hover {
+      background-color: var(--card-inner);
+      color: var(--text-main);
+    }
+
+    .cmd-item-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Document Viewer Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-box {
+      background-color: var(--card-bg);
+      width: 100%;
+      max-width: 960px;
+      height: 88vh;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .modal-header-bar {
+      padding: 0.85rem 1.35rem;
+      background-color: var(--card-inner);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .modal-title-text {
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .modal-frame-viewport {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      background-color: #2b2b36;
+    }
+
+    .modal-frame-viewport iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Modal Unpublished Document Screen */
+    .modal-coming-soon {
+      width: 100%;
+      height: 100%;
+      background-color: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .modal-coming-soon img {
+      width: 165px;
+      height: auto;
+      margin-bottom: 1.25rem;
+      filter: drop-shadow(0 8px 24px rgba(255, 106, 0, 0.35));
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      animation: gentleFloat 3s infinite ease-in-out;
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    .modal-coming-soon-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-yellow);
+      background: rgba(255, 183, 3, 0.12);
+      border: 1px solid rgba(255, 183, 3, 0.3);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    .modal-coming-soon h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.65rem;
+      color: var(--text-main);
+    }
+
+    .modal-coming-soon p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      max-width: 520px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #0d0e14;
+      color: #ffffff;
+      border-left: 3.5px solid var(--accent-orange);
+      border-top: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.75rem 1.25rem;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      z-index: 3000;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      padding: 3rem 1.5rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+    }
+
+    /* Interactive Ground Creature Runner (10s Interval) */
+    .creature-track {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      height: 140px;
+      pointer-events: none;
+      z-index: 99999;
+      overflow: visible;
+    }
+
+    .creature-runner {
+      position: absolute;
+      bottom: 12px;
+      left: -140px;
+      width: 82px;
+      height: 62px;
+      pointer-events: auto;
+      cursor: pointer;
+      user-select: none;
+      display: none;
+      z-index: 100000;
+    }
+
+    .creature-runner.active {
+      display: block;
+      animation: runAcross 9s linear forwards;
+    }
+
+    .creature-runner:hover {
+      animation-play-state: paused;
+    }
+
+    .creature-sprite {
+      width: 100%;
+      height: auto;
+      transform: scaleX(-1); /* Face forward in direction of motion (right) */
+      filter: drop-shadow(0 4px 10px rgba(255, 106, 0, 0.45));
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      animation: scurrying 0.32s infinite alternate ease-in-out;
+      display: block;
+    }
+
+    .creature-runner.scared .creature-sprite {
+      animation: creatureHop 0.65s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    @keyframes scurrying {
+      0% {
+        transform: scaleX(-1) translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: scaleX(-1) translateY(-8px) rotate(-4deg);
+      }
+      100% {
+        transform: scaleX(-1) translateY(-2px) rotate(3deg);
+      }
+    }
+
+    @keyframes runAcross {
+      0% {
+        left: -140px;
+      }
+      100% {
+        left: calc(100vw + 140px);
+      }
+    }
+
+    @keyframes creatureHop {
+      0% { transform: scaleX(-1) translateY(0) rotate(0deg); }
+      40% { transform: scaleX(-1) translateY(-32px) rotate(-180deg) scale(1.22); }
+      80% { transform: scaleX(-1) translateY(-5px) rotate(-360deg); }
+      100% { transform: scaleX(-1) translateY(0) rotate(-360deg); }
+    }
+
+    /* Creature Dialogue Bubble */
+    .creature-bubble {
+      position: absolute;
+      bottom: 68px;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      background-color: #0d0e14;
+      border: 1.5px solid var(--accent-orange);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      white-space: nowrap;
+      pointer-events: none;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.7), 0 0 10px rgba(255, 106, 0, 0.4);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+      z-index: 100001;
+    }
+
+    .creature-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 6px 6px 0;
+      border-style: solid;
+      border-color: var(--accent-orange) transparent transparent;
+      display: block;
+      width: 0;
+    }
+
+    .creature-bubble.show {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateX(-50%) translateY(-6px) !important;
+    }
+
+    [data-theme="light"] .creature-bubble {
+      background-color: #ffffff;
+      color: #0c0d12;
+      border-color: var(--accent-orange);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.18), 0 0 10px rgba(255, 106, 0, 0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Spotlight Torch -->
+  <div class="spotlight"></div>
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="progressBar"></div>
+
+  <!-- Telemetry Header (Astra & Tathva inspired) -->
+  <aside class="telemetry-bar">
+    <div class="telemetry-group">
+      <span class="status-pulse"><span class="status-dot"></span> NODE ACTIVE</span>
+      <span>AFFIL: AWH ECE // '30</span>
+      <span>LOC: KOZHIKODE, KERALA</span>
+    </div>
+    <div class="telemetry-group">
+      <span id="liveClock">IST --:--:--</span>
+      <span style="color: var(--accent-yellow);"><i class="fa-solid fa-shield-halved"></i> SECURE TELEMETRY</span>
+    </div>
+  </aside>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-badge">ECE</span>
+        <span>DHANANJAY A P</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#identity" class="nav-link active">Identity</a></li>
+        <li><a href="#works" class="nav-link">Works</a></li>
+        <li><a href="#console" class="nav-link">Console</a></li>
+        <li><a href="#curriculum" class="nav-link">CV & Skills</a></li>
+        <li><a href="#notes" class="nav-link">Research Notes</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="cmd-trigger-btn" onclick="openCmdPalette()">
+          <i class="fa-solid fa-magnifying-glass"></i> <kbd>Ctrl K</kbd>
+        </button>
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
+          <i class="fa-solid fa-moon"></i>
+          <span id="themeText">Light</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- Section 1: Hero Identity with Rectangular Portrait Photo & Oscilloscope -->
+    <section id="identity" class="hero-section" style="border: none; padding-top: 1rem;">
+      <canvas id="interactiveCanvas"></canvas>
+      
+      <div class="hero-layout">
+        
+        <!-- Featured Rectangular Portrait Card on Left -->
+        <div class="portrait-card" id="portraitCard">
+          <img src="profile.png" alt="DHANANJAY A P" class="portrait-img" />
+          <div class="portrait-hud">
+            <span><i class="fa-solid fa-circle" style="font-size: 7px; color: var(--accent-green); margin-right: 5px;"></i>VERIFIED ECE</span>
+            <span class="hud-tag">KOZHIKODE // IN</span>
+          </div>
+        </div>
+
+        <!-- Bio & Details on Right -->
+        <div class="hero-details">
+          <div>
+            <h1 class="hero-name">DHANANJAY A P</h1>
+            <div class="typewriter-title">
+              <span id="typewriter"></span><span class="typewriter-cursor"></span>
+            </div>
+
+            <p class="hero-bio">
+              I am an undergraduate researcher at AWH Engineering College specializing in embedded firmware security, microcontrollers (ESP32), and autonomous agentic software development. Driven by deep curiosity and technical rigor, my current research focuses on implementing cryptographic verification on resource-constrained hardware.
+              <br><br>
+              Beyond engineering, I am a dedicated content strategist who transforms complex, multi-faceted technical concepts into highly structured, authoritative narratives. Grounded in a strong sense of conscientiousness, I also balance my technical pursuits with social coordination as an active Isha Foundation volunteer.
+            </p>
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-primary" onclick="openDriveModal('cv.pdf', 'Curriculum Vitae (PDF) - DHANANJAY A P')">
+              <i class="fa-solid fa-file-pdf"></i> View CV (PDF)
+            </button>
+            <button class="btn btn-outline" onclick="copyContact()">
+              <i class="fa-regular fa-copy"></i> Copy Email
+            </button>
+            <a href="https://github.com/dhananjayap" target="_blank" class="btn btn-outline">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/dhananjayap10" target="_blank" class="btn btn-outline">
+              <i class="fa-brands fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://www.instagram.com/dhananjay_ap/" target="_blank" class="btn btn-outline">
+              <i class="fa-brands fa-instagram"></i> Instagram
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ECE Hardware Telemetry Oscilloscope (Full Breadth across section gap) -->
+      <div class="telemetry-card" style="margin-top: 1.75rem;">
+        <div class="card-top">
+          <span>// ESP32 CARRIER TELEMETRY &bull; REAL-TIME SIGNAL BUS</span>
+          <span id="bandIndicator" style="color: var(--accent-green); font-family: var(--font-mono); font-size: 0.72rem;">BAND: 2.4 GHz WiFi (802.11 b/g/n)</span>
+        </div>
+
+        <!-- Animated Oscilloscope Wave -->
+        <div class="wave-wrap">
+          <canvas id="waveCanvas"></canvas>
+          <div class="wave-controls">
+            <button class="wave-pill active" onclick="setBand('wifi', this)">2.4 GHz WiFi</button>
+            <button class="wave-pill" onclick="setBand('ble', this)">BLE 5.0</button>
+            <button class="wave-pill" onclick="setBand('lora', this)">LoRa 868MHz</button>
+            <button class="wave-pill" onclick="setBand('crypto', this)">Crypto Bus</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile, Research Craft & Writing Highlights -->
+      <div class="profile-methodology-card">
+        <div class="methodology-header">
+          <div class="methodology-title">
+            <i class="fa-solid fa-feather-pointed" style="color: var(--accent-orange);"></i> ABOUT DHANANJAY A P // RESEARCH &amp; WRITING METHODOLOGY
+          </div>
+          <span class="methodology-tag">// COGNITIVE &amp; TECHNICAL INVESTIGATION</span>
+        </div>
+        
+        <p class="profile-narrative">
+          Exhaustive research and creative clarity form the foundation of my writing craft. Whether dissecting intricate technical systems, cognitive frameworks, or nuanced conceptual topics, my approach combines deep-dive analytical investigation with intuitive narrative design. Every subject is explored by peeling back superficial layers&mdash;cross-referencing diverse sources, identifying hidden patterns, and building robust structural frameworks&mdash;to produce writing that is both intellectually rigorous and compelling to read.
+        </p>
+
+        <div class="highlights-grid">
+          <div class="highlight-item">
+            <div class="highlight-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <div class="highlight-content">
+              <h4>Exhaustive Research &amp; Analytical Depth</h4>
+              <p>Committed to thorough, multi-source investigation that goes far beyond surface-level information to uncover foundational principles and subtle nuances.</p>
+            </div>
+          </div>
+
+          <div class="highlight-item">
+            <div class="highlight-icon"><i class="fa-solid fa-sitemap"></i></div>
+            <div class="highlight-content">
+              <h4>Creative Synthesis &amp; Narrative Structure</h4>
+              <p>Adept at transforming dense, abstract, or technical information into clear, organized, and accessible content.</p>
+            </div>
+          </div>
+
+          <div class="highlight-item">
+            <div class="highlight-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+            <div class="highlight-content">
+              <h4>Methodological Rigor &amp; Precision</h4>
+              <p>Prioritizing accuracy, logical scaffolding, and structured clarity in every deliverable to ensure maximum reliability.</p>
+            </div>
+          </div>
+
+          <div class="highlight-item">
+            <div class="highlight-icon"><i class="fa-solid fa-arrows-split-up-and-left"></i></div>
+            <div class="highlight-content">
+              <h4>Contextual Adaptability</h4>
+              <p>Seamlessly translating complex mechanics, technical guides, and analytical concepts into high-value written artifacts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Hardware Cryptographic Lab Simulator -->
+      <div class="crypto-lab-card">
+        <div class="lab-header">
+          <div class="lab-title">
+            <i class="fa-solid fa-microchip" style="color:var(--accent-orange);"></i> ESP32 HARDWARE SECURITY LAB // CRYPTOGRAPHIC ROOT-OF-TRUST
+          </div>
+          <div class="lab-stat" id="labStat">
+            <span class="status-dot"></span> BENCHMARK READY
+          </div>
+        </div>
+
+        <div class="lab-display" id="labDisplay">
+          <div style="color: var(--text-subtle);">// Interactive cryptographic verification engine. Click below to execute live simulation:</div>
+        </div>
+
+        <div class="lab-progress"><div class="lab-bar" id="labBar"></div></div>
+
+        <div class="lab-controls">
+          <button class="btn btn-primary" id="runCryptoBtn" onclick="runCryptoVerification()">
+            <i class="fa-solid fa-play"></i> Execute Verification Benchmark
+          </button>
+          <div class="lab-meta-tags">
+            <span>SHA-256</span> &bull; <span>RSA-3072</span> &bull; <span>AES-256-XTS</span> &bull; <span>Constant-Time Verification</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Section 2: Works with 3D Tilt Cards -->
+    <section id="works">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">[ SECTION_02 ]</div>
+          <h2 class="section-title">Research & Engineering Works</h2>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterCategory('all', this)">
+          <i class="fa-solid fa-layer-group"></i> All Works (3)
+        </button>
+        <button class="filter-btn" onclick="filterCategory('iot', this)">
+          <i class="fa-solid fa-microchip"></i> Hardware & ESP32
+        </button>
+        <button class="filter-btn" onclick="filterCategory('ai', this)">
+          <i class="fa-solid fa-robot"></i> Agentic AI Systems
+        </button>
+        <button class="filter-btn" onclick="filterCategory('web', this)">
+          <i class="fa-solid fa-code"></i> Java & SQL Systems
+        </button>
+      </div>
+
+      <!-- 3D Cursor-Tracking Cards Grid -->
+      <div class="cards-grid" id="cardsGrid">
+
+        <!-- Work 1 -->
+        <article class="tilt-card" data-category="iot">
+          <div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.85rem;">
+              <span class="card-badge" style="margin-bottom: 0;">Primary Research Track</span>
+              <span class="card-badge" style="margin-bottom: 0; background: rgba(255, 183, 3, 0.12); color: var(--accent-yellow); border-color: rgba(255, 183, 3, 0.3);">
+                <i class="fa-solid fa-clock"></i> Notes Soon
+              </span>
+            </div>
+            <h3 class="card-title">ESP32 Embedded Systems & Hardware Security</h3>
+            <p class="card-desc">
+              Investigation into secure boot chains, hardware encryption coprocessors, flash memory dump prevention, 
+              and side-channel timing attack mitigation in production IoT sensor deployments.
+            </p>
+            <div class="card-tags">
+              <span class="tag-item">#ESP32</span>
+              <span class="tag-item">#HardwareSecurity</span>
+              <span class="tag-item">#IoT</span>
+              <span class="tag-item">#EmbeddedC</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openDriveModal('YOUR_RESEARCH_PAPER_DRIVE_ID', 'ESP32 Hardware Security Research Paper')">
+              <i class="fa-brands fa-google-drive"></i> Preview Paper (Drive)
+            </button>
+            <a href="blog-post.html" class="btn btn-outline">
+              <i class="fa-solid fa-book-open"></i> Read Note (Publishing Soon)
+            </a>
+          </div>
+        </article>
+
+        <!-- Work 2 -->
+        <article class="tilt-card" data-category="ai">
+          <div>
+            <span class="card-badge">Autonomous AI Systems</span>
+            <h3 class="card-title">Agentic Software Development & Prompt Engineering</h3>
+            <p class="card-desc">
+              Engineering autonomous LLM execution loops, tool orchestration pipelines, and structured prompting frameworks. 
+              Certified in Agentic Coding with practical integrations for complex engineering tasks.
+            </p>
+            <div class="card-tags">
+              <span class="tag-item">#AgenticAI</span>
+              <span class="tag-item">#PromptEngineering</span>
+              <span class="tag-item">#Python</span>
+              <span class="tag-item">#AutonomousLoops</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openDriveModal('YOUR_PROJECT_REPORT_DRIVE_ID', 'Agentic Coding & System Architecture Documentation')">
+              <i class="fa-brands fa-google-drive"></i> View Report (Drive)
+            </button>
+            <a href="https://github.com/dhananjayap" target="_blank" class="btn btn-outline">
+              <i class="fa-brands fa-github"></i> Repository
+            </a>
+          </div>
+        </article>
+
+        <!-- Work 3 -->
+        <article class="tilt-card" data-category="web">
+          <div>
+            <span class="card-badge">Systems & Relational DB</span>
+            <h3 class="card-title">Full-Stack Application Development with Java & SQL</h3>
+            <p class="card-desc">
+              Constructed modular backend systems leveraging core Java object-oriented principles, prepared SQL relational databases, 
+              and responsive front-end interfaces developed through LBS Centre coursework.
+            </p>
+            <div class="card-tags">
+              <span class="tag-item">#Java</span>
+              <span class="tag-item">#SQL</span>
+              <span class="tag-item">#HTML5</span>
+              <span class="tag-item">#CSS3</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="https://github.com/dhananjayap" target="_blank" class="btn btn-outline">
+              <i class="fa-brands fa-github"></i> View Repositories
+            </a>
+            <button class="btn btn-outline" onclick="copyContact()">
+              <i class="fa-regular fa-envelope"></i> Contact Me
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Section 3: Interactive Cyber Console -->
+    <section id="console">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">[ SECTION_03 ]</div>
+          <h2 class="section-title">Interactive Cyber Console</h2>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-subtle);">
+          SHELL // BASH_V2.4
+        </div>
+      </div>
+
+      <div class="console-box">
+        <div class="console-header">
+          <div class="console-dots">
+            <span class="console-dot dot-red"></span>
+            <span class="console-dot dot-yellow"></span>
+            <span class="console-dot dot-green"></span>
+          </div>
+          <div class="console-title">dhananjay@security-node: ~ (bash)</div>
+          <div style="color: var(--accent-green); font-size: 0.75rem; font-weight: 700;">
+            <i class="fa-solid fa-circle" style="font-size: 7px; margin-right: 4px;"></i> ONLINE
+          </div>
+        </div>
+
+        <div class="console-body" id="consoleBody">
+          <div class="console-line" style="color: var(--accent-orange);">
+            [INIT] Interactive telemetry shell loaded for DHANANJAY A P.
+          </div>
+          <div class="console-line">
+            Type <span class="console-cmd-tag">help</span> or click the command shortcuts below to query the system:
+          </div>
+        </div>
+
+        <!-- Quick Shortcut Bar -->
+        <div class="console-quick-bar">
+          <button class="cmd-pill" onclick="runConsoleCmd('about')"><i class="fa-regular fa-user"></i> about</button>
+          <button class="cmd-pill" onclick="runConsoleCmd('skills')"><i class="fa-solid fa-code"></i> skills</button>
+          <button class="cmd-pill" onclick="runConsoleCmd('projects')"><i class="fa-solid fa-microchip"></i> projects</button>
+          <button class="cmd-pill" onclick="runConsoleCmd('education')"><i class="fa-solid fa-graduation-cap"></i> education</button>
+          <button class="cmd-pill" onclick="runConsoleCmd('contact')"><i class="fa-regular fa-envelope"></i> contact</button>
+          <button class="cmd-pill" onclick="runConsoleCmd('telemetry')"><i class="fa-solid fa-chart-line"></i> telemetry</button>
+          <button class="cmd-pill" onclick="runConsoleCmd('creature')"><i class="fa-solid fa-paw"></i> scout</button>
+          <button class="cmd-pill" onclick="runConsoleCmd('clear')"><i class="fa-solid fa-broom"></i> clear</button>
+        </div>
+
+        <!-- Console Input -->
+        <form class="console-input-row" onsubmit="handleConsoleInput(event)">
+          <span class="console-prompt">dhananjay@node:~$</span>
+          <input type="text" id="consoleInput" placeholder="type 'help', 'skills', 'about'..." autocomplete="off" />
+        </form>
+      </div>
+    </section>
+
+    <!-- Section 4: Curriculum Vitae & Milestones -->
+    <section id="curriculum">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">[ SECTION_04 ]</div>
+          <h2 class="section-title">Curriculum Vitae & Verified Milestones</h2>
+        </div>
+        <div>
+          <button class="btn btn-outline" onclick="openDriveModal('cv.pdf', 'DHANANJAY A P - Official Curriculum Vitae')">
+            <i class="fa-solid fa-file-pdf"></i> Inspect Full CV
+          </button>
+        </div>
+      </div>
+
+      <div class="cv-grid">
+
+        <!-- Timeline Column -->
+        <div>
+          <div class="cv-heading">
+            <i class="fa-solid fa-graduation-cap"></i> Academic Trajectory &amp; Community Milestones
+          </div>
+
+          <div class="timeline-node">
+            <div class="timeline-date">AUGUST 2026 &mdash; APRIL 2030 (EXPECTED)</div>
+            <div class="timeline-title">Bachelor of Technology (B.Tech) &bull; ECE</div>
+            <div class="timeline-org">AWH Engineering College, Kuttikattoor</div>
+            <p class="timeline-text">
+              Rigorous curriculum in Electrical, Electronics, and Communication Engineering. Core focus on digital signal processing, 
+              microcontrollers, network protocols, hardware security, and edge intelligence.
+            </p>
+          </div>
+
+          <div class="timeline-node">
+            <div class="timeline-date">APRIL 2024 &mdash; JUNE 2024</div>
+            <div class="timeline-title">Course Certification: Java, HTML, CSS</div>
+            <div class="timeline-org">LBS Centre for Science and Technology</div>
+            <p class="timeline-text">
+              Intensive technical track in object-oriented software engineering, relational data handling, and front-end interface engineering.
+            </p>
+          </div>
+
+          <div class="timeline-node">
+            <div class="timeline-date">JUNE 2012 &mdash; MARCH 2026</div>
+            <div class="timeline-title">Foundational & Higher Secondary Schooling</div>
+            <div class="timeline-org">Veda Vyasa Vidyalayam</div>
+            <p class="timeline-text">
+              Strong secondary grounding in sciences, advanced mathematics, and linguistic disciplines.
+            </p>
+          </div>
+
+          <div class="timeline-node">
+            <div class="timeline-date">COMMUNITY SERVICE</div>
+            <div class="timeline-title">Active Volunteer</div>
+            <div class="timeline-org">Isha Foundation</div>
+            <p class="timeline-text">
+              Contributing to programs centered on human well-being and social responsibility. Honed interpersonal communication, 
+              social coordination, and community engagement.
+            </p>
+          </div>
+        </div>
+
+        <!-- Technical Competency Matrix -->
+        <div class="skill-card">
+          <div class="cv-heading" style="margin-bottom: 0;">
+            <i class="fa-solid fa-cubes"></i> Technical Competency Matrix
+          </div>
+
+          <div class="skill-group">
+            <h4>// PROGRAMMING & SYSTEMS</h4>
+            <div class="pill-cluster">
+              <span class="badge-pill highlight">Python</span>
+              <span class="badge-pill highlight">Java</span>
+              <span class="badge-pill">SQL</span>
+              <span class="badge-pill">Embedded C/C++</span>
+              <span class="badge-pill">HTML5 & CSS3</span>
+              <span class="badge-pill">Git / GitHub</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>// EMBEDDED & HARDWARE SECURITY</h4>
+            <div class="pill-cluster">
+              <span class="badge-pill highlight">ESP32 SoC</span>
+              <span class="badge-pill">Secure Boot V2</span>
+              <span class="badge-pill">Flash Encryption</span>
+              <span class="badge-pill">UART / SPI Bus</span>
+              <span class="badge-pill">IoT Protocol Security</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>// AI & WORKFLOW AUTOMATION</h4>
+            <div class="pill-cluster">
+              <span class="badge-pill highlight">Agentic Coding (Certified)</span>
+              <span class="badge-pill">Prompt Engineering</span>
+              <span class="badge-pill">Tool Orchestration</span>
+              <span class="badge-pill">Autonomous Loops</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>// CREATIVE MEDIA & PRODUCTION</h4>
+            <div class="pill-cluster">
+              <span class="badge-pill">Adobe Premiere</span>
+              <span class="badge-pill">VN Video Editor</span>
+              <span class="badge-pill">Technical Writing</span>
+              <span class="badge-pill">Public Presentation</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>// LANGUAGES</h4>
+            <div class="pill-cluster">
+              <span class="badge-pill">English (Fluent)</span>
+              <span class="badge-pill">Malayalam (Native)</span>
+              <span class="badge-pill">Hindi</span>
+              <span class="badge-pill">Sanskrit</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 5: Research Notes & Publications -->
+    <section id="notes">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">[ SECTION_05 ]</div>
+          <h2 class="section-title">Research Notes & Publications</h2>
+        </div>
+      </div>
+
+      <article class="note-card">
+        <div class="note-meta">
+          <span><i class="fa-regular fa-calendar"></i> OCTOBER 2026</span>
+          <span>&bull;</span>
+          <span style="color: var(--accent-yellow); font-weight: 700;"><i class="fa-solid fa-clock"></i> NOTES PUBLISHING SOON</span>
+          <span>&bull;</span>
+          <span style="color: var(--accent-orange); font-weight: 700;">EMBEDDED HARDWARE SECURITY</span>
+        </div>
+        <h3 class="note-title">
+          <a href="blog-post.html">
+            Securing the Connected Edge: Embedded Firmware Analysis on ESP32 Microcontrollers
+          </a>
+        </h3>
+        <p class="note-abstract">
+          A systematic breakdown of firmware security architectures, hardware-assisted cryptographic engines (RSA-3072 / AES-256), 
+          and side-channel timing attack mitigation in production-grade IoT sensor networks. Includes mathematical proofs, 
+          C code listings, and BibTeX citations.
+        </p>
+        <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <a href="blog-post.html" class="btn btn-primary" style="padding: 0.45rem 1rem;">
+            Read Note (Publishing Soon) <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem;"></i>
+          </a>
+          <button class="btn btn-outline" style="padding: 0.45rem 1rem;" onclick="openDriveModal('YOUR_RESEARCH_PAPER_DRIVE_ID', 'Full Research Paper: ESP32 Security')">
+            <i class="fa-brands fa-google-drive" style="color: var(--accent-yellow);"></i> Preview Paper on Drive
+          </button>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- Command Palette Modal (Ctrl + K) -->
+  <div class="cmd-overlay" id="cmdOverlay" onclick="closeCmdPalette(event)">
+    <div class="cmd-modal" onclick="event.stopPropagation()">
+      <div class="cmd-search-row">
+        <i class="fa-solid fa-magnifying-glass" style="color: var(--accent-orange);"></i>
+        <input type="text" id="cmdSearchInput" placeholder="Quick search or jump to section..." oninput="filterCmdList(this.value)" autocomplete="off" />
+        <kbd onclick="closeCmdPalette()" style="cursor:pointer;">ESC</kbd>
+      </div>
+      <div class="cmd-list" id="cmdList">
+        <div class="cmd-item" onclick="jumpTo('#identity')">
+          <div class="cmd-item-title"><i class="fa-solid fa-user"></i> Identity & Profile</div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem;">#identity</span>
+        </div>
+        <div class="cmd-item" onclick="openDriveModal('cv.pdf', 'Curriculum Vitae (PDF)'); closeCmdPalette();">
+          <div class="cmd-item-title"><i class="fa-solid fa-file-pdf" style="color: var(--accent-red);"></i> View Curriculum Vitae (PDF)</div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem;">PDF Modal</span>
+        </div>
+        <div class="cmd-item" onclick="jumpTo('#works')">
+          <div class="cmd-item-title"><i class="fa-solid fa-microchip"></i> Engineering Works & Projects</div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem;">#works</span>
+        </div>
+        <div class="cmd-item" onclick="jumpTo('#console')">
+          <div class="cmd-item-title"><i class="fa-solid fa-terminal"></i> Interactive Cyber Console</div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem;">#console</span>
+        </div>
+        <div class="cmd-item" onclick="jumpTo('#curriculum')">
+          <div class="cmd-item-title"><i class="fa-solid fa-graduation-cap"></i> CV, Education & Skills</div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem;">#curriculum</span>
+        </div>
+        <div class="cmd-item" onclick="jumpTo('#notes')">
+          <div class="cmd-item-title"><i class="fa-solid fa-book-open"></i> Research Blog & Publications</div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem;">#notes</span>
+        </div>
+        <div class="cmd-item" onclick="copyContact(); closeCmdPalette();">
+          <div class="cmd-item-title"><i class="fa-regular fa-copy"></i> Copy Email Address</div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem;">Clipboard</span>
+        </div>
+        <div class="cmd-item" onclick="toggleTheme(); closeCmdPalette();">
+          <div class="cmd-item-title"><i class="fa-solid fa-circle-half-stroke"></i> Toggle Dark / Light Theme</div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem;">Theme</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Document Viewer Modal (Google Drive Integration) -->
+  <div class="modal-overlay" id="driveModal" onclick="closeDriveModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header-bar">
+        <div class="modal-title-text" id="modalTitle">
+          <i class="fa-brands fa-google-drive" style="color: var(--accent-yellow);"></i> Document Viewport
+        </div>
+        <button class="modal-close-btn" onclick="closeDriveModal()">&times;</button>
+      </div>
+      <div class="modal-frame-viewport">
+        <iframe id="driveFrame" src="" allow="autoplay"></iframe>
+        
+        <!-- Unpublished Document / Paper Screen -->
+        <div id="modalComingSoon" class="modal-coming-soon" style="display: none;">
+          <img src="sorry-creature.png" alt="Document Will Be Published Soon" />
+          <div class="modal-coming-soon-badge">
+            <span class="status-dot" style="background-color: var(--accent-yellow); box-shadow: 0 0 10px var(--accent-yellow);"></span>
+            PENDING PUBLICATION
+          </div>
+          <h3>DOCUMENT WILL BE PUBLISHED SOON</h3>
+          <p>The full technical paper and verification documentation for "<strong id="csDocTitle" style="color: var(--accent-orange);">Research Document</strong>" is currently undergoing peer review and will be published to Google Drive shortly.</p>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;">
+            <button class="btn btn-primary" onclick="closeDriveModal()">
+              <i class="fa-solid fa-arrow-left"></i> Return to Portfolio
+            </button>
+            <button class="btn btn-outline" onclick="openDriveModal('cv.pdf', 'Curriculum Vitae (PDF) - DHANANJAY A P')">
+              <i class="fa-solid fa-file-pdf"></i> View Current CV (PDF)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div id="toast" class="toast">
+    <i class="fa-solid fa-circle-check" style="color: var(--accent-orange); margin-right: 6px;"></i>
+    <span id="toastMsg">Action confirmed</span>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 DHANANJAY A P &bull; Portfolio & Academic Records &bull; Hosted on GitHub Pages</p>
+  </footer>
+
+  <script>
+    // 1. Mouse Spotlight Tracker
+    window.addEventListener('mousemove', e => {
+      document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+      document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+    });
+
+    // 2. 3D Tilt on the Rectangular Portrait Card
+    const portraitCard = document.getElementById('portraitCard');
+    if (portraitCard) {
+      portraitCard.addEventListener('mousemove', e => {
+        const rect = portraitCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+        portraitCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+
+      portraitCard.addEventListener('mouseleave', () => {
+        portraitCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    }
+
+    // 3. Live Telemetry Clock (Kozhikode, IST)
+    function updateClock() {
+      const now = new Date();
+      const options = { timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      const istTime = now.toLocaleTimeString('en-GB', options);
+      const clockEl = document.getElementById('liveClock');
+      if (clockEl) clockEl.textContent = `IST ${istTime}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 4. Theme Toggle (Institutional Dark / Light)
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', next);
+      localStorage.setItem('portfolio-theme', next);
+      
+      const themeText = document.getElementById('themeText');
+      const themeIcon = document.querySelector('#themeBtn i');
+      if (next === 'light') {
+        themeText.textContent = 'Dark';
+        themeIcon.className = 'fa-solid fa-moon';
+      } else {
+        themeText.textContent = 'Light';
+        themeIcon.className = 'fa-solid fa-sun';
+      }
+    }
+
+    (function() {
+      const saved = localStorage.getItem('portfolio-theme') || 'dark';
+      document.body.setAttribute('data-theme', saved);
+      const themeText = document.getElementById('themeText');
+      const themeIcon = document.querySelector('#themeBtn i');
+      if (themeText && themeIcon) {
+        if (saved === 'light') {
+          themeText.textContent = 'Dark';
+          themeIcon.className = 'fa-solid fa-moon';
+        } else {
+          themeText.textContent = 'Light';
+          themeIcon.className = 'fa-solid fa-sun';
+        }
+      }
+    })();
+
+    // 5. Scroll Progress Indicator & Scrollspy
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const bar = document.getElementById('progressBar');
+      if (bar) bar.style.width = scrolled + '%';
+
+      const sections = ['identity', 'works', 'console', 'curriculum', 'notes'];
+      let currentSection = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 180 && rect.bottom >= 180) currentSection = id;
+        }
+      });
+      if (currentSection) {
+        document.querySelectorAll('.nav-links a').forEach(a => {
+          if (a.getAttribute('href') === '#' + currentSection) {
+            a.classList.add('active');
+          } else {
+            a.classList.remove('active');
+          }
+        });
+      }
+    });
+
+    // 6. Kinetic Typewriter Title
+    const typewriterPhrases = [
+      "Researcher & Content Strategist",
+      "B.Tech ECE Student &bull; AWH Engineering",
+      "Aspiring Cybersecurity Professional",
+      "ESP32 & Hardware Security Researcher",
+      "Certified Agentic Software Developer",
+      "Active Isha Foundation Volunteer"
+    ];
+    let tPhraseIdx = 0;
+    let tCharIdx = 0;
+    let tIsDeleting = false;
+    const typewriterEl = document.getElementById('typewriter');
+
+    function typeLoop() {
+      const current = typewriterPhrases[tPhraseIdx];
+      if (tIsDeleting) {
+        typewriterEl.innerHTML = current.substring(0, tCharIdx - 1);
+        tCharIdx--;
+      } else {
+        typewriterEl.innerHTML = current.substring(0, tCharIdx + 1);
+        tCharIdx++;
+      }
+
+      let speed = tIsDeleting ? 25 : 55;
+
+      if (!tIsDeleting && tCharIdx === current.length) {
+        speed = 2000;
+        tIsDeleting = true;
+      } else if (tIsDeleting && tCharIdx === 0) {
+        tIsDeleting = false;
+        tPhraseIdx = (tPhraseIdx + 1) % typewriterPhrases.length;
+        speed = 350;
+      }
+
+      setTimeout(typeLoop, speed);
+    }
+    typeLoop();
+
+    // 7. Interactive RF Signal Wave Oscillogram with Band Selector
+    let waveConfig = {
+      freq1: 0.04,
+      freq2: 0.08,
+      amp1: 14,
+      amp2: 4,
+      speed: 0.045,
+      color: '#ff6a00'
+    };
+
+    function setBand(type, btn) {
+      document.querySelectorAll('.wave-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const ind = document.getElementById('bandIndicator');
+
+      if (type === 'wifi') {
+        waveConfig = { freq1: 0.04, freq2: 0.08, amp1: 14, amp2: 4, speed: 0.045, color: '#ff6a00' };
+        ind.textContent = 'BAND: 2.4 GHz WiFi (802.11 b/g/n)';
+      } else if (type === 'ble') {
+        waveConfig = { freq1: 0.08, freq2: 0.16, amp1: 8, amp2: 3, speed: 0.08, color: '#10b981' };
+        ind.textContent = 'BAND: BLE 5.0 (2.402 - 2.480 GHz)';
+      } else if (type === 'lora') {
+        waveConfig = { freq1: 0.015, freq2: 0.03, amp1: 20, amp2: 5, speed: 0.02, color: '#ffb703' };
+        ind.textContent = 'BAND: LoRa Sub-GHz (868 / 915 MHz)';
+      } else if (type === 'crypto') {
+        waveConfig = { freq1: 0.12, freq2: 0.24, amp1: 16, amp2: 8, speed: 0.11, color: '#ff2a00' };
+        ind.textContent = 'BUS: AES-256 SPI Flash Encryption';
+      }
+    }
+
+    (function initWaveCanvas() {
+      const canvas = document.getElementById('waveCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let t = 0;
+
+      function resize() {
+        canvas.width = canvas.parentElement.offsetWidth;
+        canvas.height = 55;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Background grid
+        ctx.strokeStyle = '#181a24';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < canvas.width; x += 30) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, canvas.height);
+          ctx.stroke();
+        }
+
+        // Signal Trace
+        ctx.beginPath();
+        ctx.lineWidth = 1.8;
+        ctx.strokeStyle = waveConfig.color;
+
+        const mid = canvas.height / 2;
+        for (let x = 0; x < canvas.width; x++) {
+          const y = mid + Math.sin(x * waveConfig.freq1 + t) * waveConfig.amp1 * Math.cos(x * 0.01 + t * 0.5) + (Math.sin(x * waveConfig.freq2 + t * 1.5) * waveConfig.amp2);
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        t += waveConfig.speed;
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // 8. Interactive Hero Particle Mesh Canvas
+    (function initInteractiveCanvas() {
+      const canvas = document.getElementById('interactiveCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      let particles = [];
+      const mouse = { x: null, y: null, radius: 110 };
+
+      function resize() {
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      window.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+
+      window.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+      const colors = ['#ff2a00', '#ff6a00', '#ffb703'];
+      const count = Math.min(Math.floor(width / 22), 48);
+
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.75,
+          vy: (Math.random() - 0.5) * 0.75,
+          radius: Math.random() * 2 + 1,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          if (mouse.x !== null && mouse.y !== null) {
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius) {
+              p.x += (dx / dist) * 1.6;
+              p.y += (dy / dist) * 1.6;
+            }
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p.x - p2.x;
+            const dy = p.y - p2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 85) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(255, 106, 0, ${0.28 * (1 - dist / 85)})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    // 9. Interactive Cryptographic Verification Engine Simulator
+    let isVerifying = false;
+    function runCryptoVerification() {
+      if (isVerifying) return;
+      isVerifying = true;
+
+      const btn = document.getElementById('runCryptoBtn');
+      const display = document.getElementById('labDisplay');
+      const bar = document.getElementById('labBar');
+      const stat = document.getElementById('labStat');
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Running Verification...';
+      stat.innerHTML = '<span class="status-dot" style="background-color:var(--accent-yellow); box-shadow:0 0 10px var(--accent-yellow);"></span> VERIFYING HARDWARE';
+      display.innerHTML = '';
+      bar.style.width = '0%';
+
+      const steps = [
+        { msg: "[STAGE 1/4] Reading write-protected eFuse Block 0 (RSA-3072 PubKey Digest)...", delay: 400, pct: 25 },
+        { msg: "[STAGE 2/4] Computing SHA-256 integrity hash over binary image (0x1000 - 0x1E0000)...", delay: 900, pct: 55 },
+        { msg: "[STAGE 3/4] Authenticating ECDSA signature using constant-time comparator...", delay: 1400, pct: 85 },
+        { msg: "[STAGE 4/4] Hardware Root of Trust Authenticated &bull; Memory Integrity: 100% [PASSED]", delay: 1900, pct: 100 }
+      ];
+
+      steps.forEach((s, idx) => {
+        setTimeout(() => {
+          const line = document.createElement('div');
+          if (idx === steps.length - 1) {
+            line.style.color = '#10b981';
+            line.style.fontWeight = 'bold';
+          } else {
+            line.style.color = '#e4e4e7';
+          }
+          line.innerHTML = s.msg;
+          display.appendChild(line);
+          display.scrollTop = display.scrollHeight;
+          bar.style.width = s.pct + '%';
+
+          if (idx === steps.length - 1) {
+            isVerifying = false;
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-rotate-right"></i> Rerun Verification';
+            stat.innerHTML = '<span class="status-dot"></span> ROOT OF TRUST VERIFIED';
+            showToast("ESP32 Cryptographic Benchmark: 100% PASSED");
+          }
+        }, s.delay);
+      });
+    }
+
+    // 10. 3D Perspective Tilt on Project Cards
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.018, 1.018, 1.018)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    });
+
+    // 11. Instant Category Filter
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.tilt-card');
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          card.style.display = 'flex';
+          card.style.opacity = '0';
+          setTimeout(() => { card.style.opacity = '1'; }, 30);
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 12. Interactive Cyber Command Console (Shell)
+    function handleConsoleInput(e) {
+      e.preventDefault();
+      const input = document.getElementById('consoleInput');
+      const cmd = input.value.trim().toLowerCase();
+      if (cmd) {
+        runConsoleCmd(cmd);
+        input.value = '';
+      }
+    }
+
+    function runConsoleCmd(cmd) {
+      const body = document.getElementById('consoleBody');
+      const pLine = document.createElement('div');
+      pLine.className = 'console-line';
+      pLine.innerHTML = `<span class="console-prompt">dhananjay@node:~$</span> <span style="color:#ffffff;">${cmd}</span>`;
+      body.appendChild(pLine);
+
+      const rLine = document.createElement('div');
+      rLine.className = 'console-line';
+
+      switch (cmd) {
+        case 'help':
+          rLine.innerHTML = `
+            <div style="color: var(--accent-yellow); margin-bottom: 3px;">Telemetry & system commands available:</div>
+            <div>&bull; <span class="console-cmd-tag">about</span> - Identity summary & research goals</div>
+            <div>&bull; <span class="console-cmd-tag">skills</span> - Inspect verified toolstack & competencies</div>
+            <div>&bull; <span class="console-cmd-tag">projects</span> - Active hardware & software implementations</div>
+            <div>&bull; <span class="console-cmd-tag">education</span> - Institutional credentials & milestones</div>
+            <div>&bull; <span class="console-cmd-tag">telemetry</span> - Query live ESP32 & ECE carrier status</div>
+            <div>&bull; <span class="console-cmd-tag">creature</span> - Deploy cyber squirrel scout across ground</div>
+            <div>&bull; <span class="console-cmd-tag">contact</span> - Verified emails and network links</div>
+            <div>&bull; <span class="console-cmd-tag">clear</span> - Flush console buffer</div>
+          `;
+          break;
+        case 'about':
+          rLine.innerHTML = `
+            <div class="console-highlight">DHANANJAY A P &bull; UNDERGRADUATE RESEARCHER</div>
+            <div style="margin-bottom: 5px;">Undergraduate researcher at AWH Engineering College specializing in embedded firmware security, microcontrollers (ESP32), and autonomous agentic software development.</div>
+            <div style="margin-bottom: 5px;">Current research focuses on implementing cryptographic verification on resource-constrained hardware.</div>
+            <div style="color: var(--text-muted); font-size: 0.82rem;">Dedicated content strategist synthesizing technical concepts into authoritative narratives; active Isha Foundation volunteer.</div>
+          `;
+          break;
+        case 'skills':
+          rLine.innerHTML = `
+            <div style="color: var(--accent-yellow);">Technical Competency:</div>
+            <div>&bull; Languages: Python, Java, SQL, Embedded C/C++, HTML5, CSS3</div>
+            <div>&bull; Hardware: ESP32 Microcontrollers, Secure Boot V2, Flash Encryption, SPI/UART</div>
+            <div>&bull; AI Systems: Agentic Coding (Certified), Prompt Engineering, Autonomous Loops</div>
+            <div>&bull; Media Production: Adobe Premiere, VN Video Editor, Technical Writing</div>
+          `;
+          break;
+        case 'projects':
+          rLine.innerHTML = `
+            <div>1. <span class="console-highlight">ESP32 Firmware Security</span>: Hardware encryption & side-channel defense.</div>
+            <div>2. <span class="console-highlight">Agentic Software Development</span>: Tool-augmented autonomous execution loops.</div>
+            <div>3. <span class="console-highlight">Java & SQL Backend</span>: Transaction-safe relational application infrastructure.</div>
+          `;
+          break;
+        case 'education':
+          rLine.innerHTML = `
+            <div>&bull; <span class="console-highlight">AWH Engineering College</span>: B.Tech ECE (2026 - 2030)</div>
+            <div>&bull; <span class="console-highlight">LBS Centre</span>: Coursework in Java, HTML, CSS (2024)</div>
+            <div>&bull; <span class="console-highlight">Veda Vyasa Vidyalayam</span>: Secondary & Higher Secondary (2012 - 2026)</div>
+            <div>&bull; <span style="color: var(--accent-yellow);">Certification</span>: Agentic Coding Certified</div>
+          `;
+          break;
+        case 'telemetry':
+          rLine.innerHTML = `
+            <div style="color: var(--accent-green); font-family: monospace;">
+              [STATUS: NOMINAL] Carrier Frequency: 2.4 GHz | WiFi/BLE Enabled<br/>
+              eFuse Block 0: WRITE_PROTECTED | Flash Encryption: AES-256-XTS<br/>
+              Boot ROM Verification: ECDSA SHA-256 Validated | Packet Loss: 0.00%
+            </div>
+          `;
+          break;
+        case 'contact':
+          rLine.innerHTML = `
+            <div>Email: <a href="mailto:palathunkaldhananjay@gmail.com" style="color:var(--accent-orange);">palathunkaldhananjay@gmail.com</a></div>
+            <div>GitHub: <a href="https://github.com/dhananjayap" target="_blank" style="color:var(--accent-yellow);">github.com/dhananjayap</a></div>
+            <div>LinkedIn: <a href="https://www.linkedin.com/in/dhananjayap10" target="_blank" style="color:var(--accent-orange);">linkedin.com/in/dhananjayap10</a></div>
+            <div>Instagram: <a href="https://www.instagram.com/dhananjay_ap/" target="_blank" style="color:var(--accent-yellow);">instagram.com/dhananjay_ap</a></div>
+          `;
+          break;
+        case 'creature':
+        case 'squirrel':
+        case 'scout':
+        case 'pet':
+          triggerCreatureRun(true);
+          rLine.innerHTML = `
+            <div style="color:var(--accent-orange); font-weight:700;">[CYBER-CREATURE DEPLOYED]</div>
+            <div>The robotic flying squirrel scout is now scurrying across the ground track!</div>
+            <div style="color:var(--text-subtle); font-size:0.8rem;">Runs automatically every 60 seconds. Click on it to interact!</div>
+          `;
+          break;
+        case 'clear':
+          body.innerHTML = '';
+          return;
+        default:
+          rLine.innerHTML = `<span style="color: var(--accent-red);">Command '${cmd}' not recognized. Type <span class="console-cmd-tag">help</span> for available commands.</span>`;
+      }
+      body.appendChild(rLine);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    // 13. Command Palette Modal (Ctrl + K)
+    function openCmdPalette() {
+      const overlay = document.getElementById('cmdOverlay');
+      overlay.style.display = 'flex';
+      const input = document.getElementById('cmdSearchInput');
+      input.value = '';
+      filterCmdList('');
+      setTimeout(() => input.focus(), 50);
+    }
+
+    function closeCmdPalette(e) {
+      const overlay = document.getElementById('cmdOverlay');
+      overlay.style.display = 'none';
+    }
+
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openCmdPalette();
+      }
+      if (e.key === 'Escape') {
+        closeCmdPalette();
+        closeDriveModal();
+      }
+    });
+
+    function filterCmdList(query) {
+      const q = query.toLowerCase();
+      document.querySelectorAll('#cmdList .cmd-item').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(q)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function jumpTo(selector) {
+      closeCmdPalette();
+      const el = document.querySelector(selector);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 14. Document & Drive Modal Functionality
+    function openDriveModal(fileId, title) {
+      const modal = document.getElementById('driveModal');
+      const frame = document.getElementById('driveFrame');
+      const titleEl = document.getElementById('modalTitle');
+      const csBox = document.getElementById('modalComingSoon');
+      
+      if (fileId.endsWith('.pdf')) {
+        titleEl.innerHTML = '<i class="fa-solid fa-file-pdf" style="color: var(--accent-red); margin-right: 6px;"></i> ' + title;
+        frame.style.display = 'block';
+        if (csBox) csBox.style.display = 'none';
+        frame.src = fileId;
+      } else if (fileId.startsWith('YOUR_')) {
+        // Unpublished Document / Paper Screen with Sorry Creature
+        titleEl.innerHTML = '<i class="fa-solid fa-clock" style="color: var(--accent-yellow); margin-right: 6px;"></i> ' + title + ' // PENDING PUBLICATION';
+        frame.style.display = 'none';
+        frame.src = '';
+        if (csBox) {
+          csBox.style.display = 'flex';
+          const titleTarget = document.getElementById('csDocTitle');
+          if (titleTarget) titleTarget.textContent = title;
+        }
+      } else {
+        titleEl.innerHTML = '<i class="fa-brands fa-google-drive" style="color: var(--accent-yellow); margin-right: 6px;"></i> ' + title;
+        frame.style.display = 'block';
+        if (csBox) csBox.style.display = 'none';
+        frame.src = 'https://drive.google.com/file/d/' + fileId + '/preview';
+      }
+      modal.style.display = 'flex';
+    }
+
+    function closeDriveModal() {
+      const modal = document.getElementById('driveModal');
+      const frame = document.getElementById('driveFrame');
+      const csBox = document.getElementById('modalComingSoon');
+      if (frame) frame.src = '';
+      if (csBox) csBox.style.display = 'none';
+      if (modal) modal.style.display = 'none';
+    }
+
+    // 15. Toast & Copy Email
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    function copyContact() {
+      const email = 'palathunkaldhananjay@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        showToast('Copied: ' + email);
+      }).catch(() => {
+        showToast('Email: ' + email);
+      });
+    }
+
+    // 16. KaTeX Math Render on DOM Ready
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+    });
+
+    // 17. Interactive Ground Creature Runner (10s Reappear Interval)
+    let isCreatureRunning = false;
+    let creatureTimer = null;
+    let bubbleTimeout = null;
+    const CREATURE_RUN_MS = 9000;      // 9 seconds across viewport
+    const CREATURE_REAPPEAR_MS = 10000; // 10 seconds interval
+
+    const creaturePhrases = [
+      "⚡ ESP32 Firmware: Secure!",
+      "🐾 Scurrying along the Kozhikode node...",
+      "🔒 Hardware Root-of-Trust: 100% OK!",
+      "⚙️ Cyber Flying Squirrel on Ground Patrol!",
+      "🚀 Agentic loops active & executing!",
+      "✨ Hi from Dhananjay's site!"
+    ];
+
+    function triggerCreatureRun(isManual = false) {
+      const runner = document.getElementById('creatureRunner');
+      if (!runner) return;
+      if (isCreatureRunning && !isManual) return;
+
+      if (creatureTimer) clearTimeout(creatureTimer);
+
+      isCreatureRunning = true;
+      runner.style.animationPlayState = 'running';
+      runner.classList.remove('active', 'scared');
+      void runner.offsetWidth; // Force CSS reflow
+      runner.classList.add('active');
+
+      if (isManual) {
+        showToast("🐾 Cyber Scout deployed across ground!");
+      }
+
+      setTimeout(() => {
+        runner.classList.remove('active');
+        isCreatureRunning = false;
+        // Reappear every 10 seconds!
+        creatureTimer = setTimeout(() => {
+          triggerCreatureRun();
+        }, CREATURE_REAPPEAR_MS);
+      }, CREATURE_RUN_MS);
+    }
+
+    function handleCreatureClick(e) {
+      e.stopPropagation();
+      const runner = document.getElementById('creatureRunner');
+      const bubble = document.getElementById('creatureBubble');
+      if (!runner || !bubble) return;
+
+      playCreatureSound();
+
+      // Pause movement so visitor can read speech bubble directly on creature's head
+      runner.style.animationPlayState = 'paused';
+
+      // Perform backflip hop
+      runner.classList.add('scared');
+      setTimeout(() => runner.classList.remove('scared'), 650);
+
+      // Random dialog on head
+      const phrase = creaturePhrases[Math.floor(Math.random() * creaturePhrases.length)];
+      bubble.textContent = phrase;
+      bubble.classList.add('show');
+
+      if (bubbleTimeout) clearTimeout(bubbleTimeout);
+      bubbleTimeout = setTimeout(() => {
+        bubble.classList.remove('show');
+        runner.style.animationPlayState = 'running';
+      }, 2600);
+
+      showToast(phrase);
+    }
+
+    function playCreatureSound() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(520, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1040, ctx.currentTime + 0.12);
+        osc.frequency.exponentialRampToValueAtTime(1450, ctx.currentTime + 0.22);
+        gain.gain.setValueAtTime(0.18, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.26);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.28);
+      } catch (err) {}
+    }
+
+    // Initial appearance 1.5s after load, then every 10 seconds after each run
+    setTimeout(() => {
+      triggerCreatureRun();
+    }, 1500);
+  </script>
+
+  <!-- Interactive Cyber Creature Runner (Ground Patrol) -->
+  <div class="creature-track" id="creatureTrack">
+    <div class="creature-runner" id="creatureRunner" onclick="handleCreatureClick(event)" title="Click to interact with Cyber Squirrel!">
+      <div class="creature-bubble" id="creatureBubble">⚡ ALL SYSTEMS NOMINAL!</div>
+      <img src="creature.png" alt="Cyber Creature Scout" class="creature-sprite" />
+    </div>
+  </div>
+</body>
+</html>
