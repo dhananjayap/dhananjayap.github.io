@@ -1,6 +1,16 @@
 # Academic CV, Research Portfolio & Blog (Google Drive Integrated)
 
-A fast, zero-dependency academic portfolio, CV, and research blog designed to showcase research files stored on **Google Drive** and host for free on **GitHub Pages**.
+A fast, zero-dependency academic portfolio, CV, and research blog designed to showcase research files, built with responsive mobile and desktop viewports, interactive cyber telemetry, and ready to host for free on **GitHub Pages**.
+
+---
+
+## 📱 Mobile & Desktop Viewport Features
+
+- **Adaptive Mobile Navigation Drawer**: Smooth slide-down menu with touch-friendly navigation and auto-close on selection or outside tap.
+- **Responsive Layout Matrix**: Dynamic 2-column mobile button grid, clamped typography, and horizontal touch-scroll for filter pills and telemetry.
+- **Interactive Cyber Creature Scout**: Animated ground runner patrol with speech bubbles and tap reaction.
+- **Embedded Document Modal**: Instant in-browser PDF inspection for `cv.pdf` and Google Drive research documents.
+- **Institutional Dark & Light Themes**: Instant high-contrast toggle with persistent local storage.
 
 ---
 
@@ -13,31 +23,17 @@ A fast, zero-dependency academic portfolio, CV, and research blog designed to sh
 
 ---
 
-## 📁 How to Connect Your Google Drive Files
+## 📁 Repository Files
 
-To display and embed your CV and research papers directly on your website:
-
-### Step 1: Make your file viewable on Google Drive
-1. Go to [Google Drive](https://drive.google.com).
-2. Right-click your PDF file (your CV, research paper, or presentation slides).
-3. Click **Share** &rarr; **Share**.
-4. Under *General access*, change **Restricted** to **"Anyone with the link"** (Role: *Viewer*).
-5. Click **Copy link**.
-
-### Step 2: Extract the File ID
-Your link will look like this:
-```
-https://drive.google.com/file/d/1A2b3C4d5E6F7g8H9iJkLmNoP/view?usp=sharing
-                                ^^^^^^^^^^^^^^^^^^^^^^^^^
-                                    This is your File ID!
-```
-
-### Step 3: Put your File ID into `index.html` or `blog-post.html`
-- In `index.html`, search for `YOUR_GOOGLE_DRIVE_CV_FILE_ID` and replace it with your copied ID:
-  ```javascript
-  openDriveModal('1A2b3C4d5E6F7g8H9iJkLmNoP', 'Curriculum Vitae (PDF)')
-  ```
-- Visitors can now click the **"View CV"** or **"Preview Paper"** button to read the PDF directly in a clean modal popup!
+| File | Description |
+| :--- | :--- |
+| `index.html` | Complete single-page portfolio, CV matrix, interactive console, and works showcase |
+| `blog-post.html` | Clean research publication landing page with pending notice badge |
+| `profile.png` | Official high-resolution portrait photograph |
+| `cv.pdf` | Verified Curriculum Vitae document |
+| `creature.png` | Transparent sprite for interactive ground scout |
+| `sorry-creature.png` | Transparent sprite for pending publication notice cards |
+| `README.md` | Deployment guide and documentation |
 
 ---
 
@@ -48,7 +44,7 @@ https://drive.google.com/file/d/1A2b3C4d5E6F7g8H9iJkLmNoP/view?usp=sharing
 3. Name your repository:
    - **Option A (Main website):** `<your-username>.github.io`
    - **Option B (Subproject):** `research-portfolio`
-4. Make sure it is set to **Public**, and check **Add a README file**. Click **Create repository**.
+4. Make sure it is set to **Public**, and check **Add a README file** (or leave unchecked if uploading this README). Click **Create repository**.
 5. In your new repository on GitHub:
    - Click **Add file** &rarr; **Upload files**.
    - Drag and drop `index.html`, `blog-post.html`, `profile.png`, `cv.pdf`, `creature.png`, `sorry-creature.png`, and `README.md` into the browser window.
@@ -57,4 +53,4 @@ https://drive.google.com/file/d/1A2b3C4d5E6F7g8H9iJkLmNoP/view?usp=sharing
    - Under *Build and deployment* &rarr; *Branch*, select `main` (or `master`) and folder `/ (root)`.
    - Click **Save**.
 7. In about 1 minute, your website will be live at:
-   `https://<your-username>.github.io`
+   `https://<your-username>.github.io` (or `https://<your-username>.github.io/research-portfolio`)

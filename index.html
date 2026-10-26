@@ -1516,6 +1516,373 @@
       border-color: var(--accent-orange);
       box-shadow: 0 8px 25px rgba(0,0,0,0.18), 0 0 10px rgba(255, 106, 0, 0.25);
     }
+
+    /* =========================================================
+       RESPONSIVE MOBILE VIEWPORT ENHANCEMENTS (< 860px)
+       ========================================================= */
+    .mobile-nav-toggle {
+      display: none;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .mobile-nav-toggle:hover {
+      border-color: var(--accent-orange);
+      color: var(--accent-orange);
+    }
+
+    @media (max-width: 860px) {
+      nav {
+        padding: 0.75rem 1rem;
+      }
+
+      .mobile-nav-toggle {
+        display: flex;
+      }
+
+      .cmd-kbd, #themeText {
+        display: none !important;
+      }
+
+      .cmd-trigger-btn, .theme-btn {
+        padding: 6px 9px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(11, 12, 17, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0.5rem 0;
+        display: none;
+        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.5);
+      }
+
+      [data-theme="light"] .nav-links {
+        background-color: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
+      }
+
+      .nav-links.open {
+        display: flex;
+        animation: slideDownMobileNav 0.22s ease-out;
+      }
+
+      @keyframes slideDownMobileNav {
+        from { opacity: 0; transform: translateY(-8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 0.85rem 1.5rem;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      [data-theme="light"] .nav-links a {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+
+      section {
+        padding: 2.5rem 0;
+      }
+
+      .hero-layout {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+      }
+
+      .portrait-card {
+        max-width: 220px;
+        margin: 0 auto;
+      }
+
+      .portrait-img {
+        height: 250px;
+      }
+
+      .hero-details {
+        width: 100%;
+        gap: 1.25rem;
+      }
+
+      .hero-name {
+        font-size: 1.95rem;
+        letter-spacing: -0.02em;
+      }
+
+      .typewriter-title {
+        justify-content: center;
+        font-size: 0.86rem;
+      }
+
+      .hero-bio {
+        font-size: 0.92rem;
+        text-align: left;
+        line-height: 1.7;
+      }
+
+      .action-row {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.55rem;
+      }
+
+      .action-row .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.6rem 0.75rem;
+        font-size: 0.82rem;
+        white-space: nowrap;
+      }
+
+      .action-row .btn:first-child {
+        grid-column: span 2;
+      }
+
+      .telemetry-card {
+        padding: 1rem;
+      }
+
+      .card-top {
+        font-size: 0.72rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
+      }
+
+      .wave-controls {
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding: 0.45rem 0.5rem;
+      }
+
+      .wave-pill {
+        font-size: 0.68rem;
+        padding: 3px 8px;
+        flex-shrink: 0;
+      }
+
+      .crypto-lab-card {
+        padding: 1.15rem;
+      }
+
+      .lab-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .lab-display {
+        font-size: 0.76rem;
+        padding: 0.85rem;
+        min-height: 95px;
+      }
+
+      .lab-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.85rem;
+      }
+
+      .lab-controls .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .lab-meta-tags {
+        text-align: center;
+        font-size: 0.7rem;
+        line-height: 1.6;
+      }
+
+      .profile-methodology-card {
+        padding: 1.25rem;
+      }
+
+      .methodology-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+
+      .highlights-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .highlight-item {
+        padding: 0.95rem 1rem;
+        gap: 0.85rem;
+      }
+
+      .filter-bar {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+        gap: 0.4rem;
+      }
+
+      .filter-btn {
+        flex-shrink: 0;
+        font-size: 0.78rem;
+        padding: 0.4rem 0.8rem;
+        white-space: nowrap;
+      }
+
+      .tilt-card {
+        padding: 1.4rem;
+        transform: none !important;
+      }
+
+      .card-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .card-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .console-box {
+        border-radius: 8px;
+      }
+
+      .console-header {
+        padding: 0.65rem 1rem;
+        font-size: 0.76rem;
+      }
+
+      .console-quick-bar {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding: 0.5rem 0.85rem;
+        gap: 0.4rem;
+      }
+
+      .cmd-pill {
+        flex-shrink: 0;
+        padding: 0.3rem 0.75rem;
+        font-size: 0.74rem;
+      }
+
+      .console-body {
+        padding: 1rem 0.85rem;
+        font-size: 0.78rem;
+        min-height: 130px;
+        max-height: 200px;
+      }
+
+      .console-input-row {
+        padding: 0.65rem 0.85rem;
+      }
+
+      .console-input-row input {
+        font-size: 16px;
+      }
+
+      .cv-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .skill-card {
+        padding: 1.35rem;
+      }
+
+      .note-card {
+        padding: 1.35rem;
+      }
+
+      .note-title {
+        font-size: 1.18rem;
+      }
+
+      .modal-overlay {
+        padding: 0.5rem;
+      }
+
+      .modal-box {
+        width: 100%;
+        height: 94vh;
+        max-width: 100%;
+        border-radius: 8px;
+      }
+
+      .modal-header-bar {
+        padding: 0.65rem 1rem;
+        font-size: 0.78rem;
+      }
+
+      .creature-track {
+        height: 110px;
+      }
+
+      .creature-runner {
+        width: 66px;
+        height: 50px;
+        bottom: 8px;
+      }
+
+      .creature-bubble {
+        bottom: 58px;
+        font-size: 0.68rem;
+        padding: 4px 10px;
+        max-width: 82vw;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .telemetry-bar {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.68rem;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .telemetry-group {
+        gap: 0.6rem;
+      }
+
+      .hero-name {
+        font-size: 1.75rem;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1546,20 +1913,23 @@
         <span class="nav-logo-badge">ECE</span>
         <span>DHANANJAY A P</span>
       </a>
-      <ul class="nav-links">
-        <li><a href="#identity" class="nav-link active">Identity</a></li>
-        <li><a href="#works" class="nav-link">Works</a></li>
-        <li><a href="#console" class="nav-link">Console</a></li>
-        <li><a href="#curriculum" class="nav-link">CV & Skills</a></li>
-        <li><a href="#notes" class="nav-link">Research Notes</a></li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#identity" class="nav-link active" onclick="closeMobileNav()">Identity</a></li>
+        <li><a href="#works" class="nav-link" onclick="closeMobileNav()">Works</a></li>
+        <li><a href="#console" class="nav-link" onclick="closeMobileNav()">Console</a></li>
+        <li><a href="#curriculum" class="nav-link" onclick="closeMobileNav()">CV & Skills</a></li>
+        <li><a href="#notes" class="nav-link" onclick="closeMobileNav()">Research Notes</a></li>
       </ul>
       <div class="nav-controls">
-        <button class="cmd-trigger-btn" onclick="openCmdPalette()">
-          <i class="fa-solid fa-magnifying-glass"></i> <kbd>Ctrl K</kbd>
+        <button class="cmd-trigger-btn" onclick="openCmdPalette()" aria-label="Open Command Palette">
+          <i class="fa-solid fa-magnifying-glass"></i> <kbd class="cmd-kbd">Ctrl K</kbd>
         </button>
-        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle Theme">
           <i class="fa-solid fa-moon"></i>
           <span id="themeText">Light</span>
+        </button>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" onclick="toggleMobileNav()" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
         </button>
       </div>
     </div>
@@ -2207,6 +2577,39 @@
         }
       }
     })();
+
+    // 4b. Responsive Mobile Drawer Navigation Handlers
+    function toggleMobileNav() {
+      const links = document.getElementById('navLinks');
+      const toggleBtn = document.getElementById('mobileNavToggle');
+      if (!links) return;
+      const isOpen = links.classList.toggle('open');
+      if (toggleBtn) {
+        toggleBtn.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+      }
+    }
+
+    function closeMobileNav() {
+      const links = document.getElementById('navLinks');
+      const toggleBtn = document.getElementById('mobileNavToggle');
+      if (links && links.classList.contains('open')) {
+        links.classList.remove('open');
+        if (toggleBtn) {
+          toggleBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        }
+      }
+    }
+
+    // Close mobile drawer on tap outside
+    document.addEventListener('click', (e) => {
+      const links = document.getElementById('navLinks');
+      const toggleBtn = document.getElementById('mobileNavToggle');
+      if (links && links.classList.contains('open')) {
+        if (!links.contains(e.target) && !toggleBtn.contains(e.target)) {
+          closeMobileNav();
+        }
+      }
+    });
 
     // 5. Scroll Progress Indicator & Scrollspy
     window.addEventListener('scroll', () => {

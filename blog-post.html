@@ -537,6 +537,57 @@
       border-color: var(--accent-orange);
       box-shadow: 0 8px 25px rgba(0,0,0,0.18), 0 0 10px rgba(255, 106, 0, 0.25);
     }
+
+    /* Mobile Viewport Optimizations */
+    @media (max-width: 600px) {
+      nav {
+        padding: 0.75rem 1rem;
+      }
+
+      .article-container {
+        padding: 1.5rem 0.85rem !important;
+      }
+
+      .coming-soon-card {
+        padding: 1.75rem 1.15rem;
+        gap: 1.25rem;
+      }
+
+      .sorry-creature-img {
+        width: 140px;
+      }
+
+      .coming-soon-title {
+        font-size: 1.45rem;
+      }
+
+      .coming-soon-desc {
+        font-size: 0.9rem;
+      }
+
+      .coming-soon-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .coming-soon-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .creature-runner {
+        width: 66px;
+        height: 50px;
+        bottom: 8px;
+      }
+
+      .creature-bubble {
+        bottom: 58px;
+        font-size: 0.68rem;
+        padding: 4px 10px;
+        max-width: 82vw;
+      }
+    }
   </style>
 </head>
 <body>
